@@ -281,6 +281,36 @@ html{scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--accent) 45%,va
 .modal-close{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:none;background:rgba(255,255,255,.75);color:#2a1822;backdrop-filter:blur(6px);cursor:pointer;font-size:.95rem;z-index:2;transition:transform .3s var(--ease)}
 .modal-close:hover{transform:rotate(90deg)}
 
+/* GALERI SCREENSHOT (di dalam modal proyek) */
+#mShots[hidden]{display:none}
+.shots-cap{font-size:.82rem;margin-top:2px}
+.shots-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin-top:12px}
+.shot{position:relative;display:block;padding:0;border:1px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;background:var(--surface);aspect-ratio:16/10;box-shadow:var(--shadow);transition:transform .35s var(--ease),box-shadow .35s,border-color .35s}
+.shot:hover,.shot:focus-visible{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:color-mix(in srgb,var(--accent) 45%,var(--border));outline:none}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .5s var(--ease)}
+.shot:hover img{transform:scale(1.06)}
+.shot-cap{position:absolute;left:0;right:0;bottom:0;padding:16px 10px 7px;font-family:var(--mono);font-size:.62rem;letter-spacing:.03em;color:#fff;text-align:left;line-height:1.3;background:linear-gradient(180deg,transparent,rgba(0,0,0,.72));opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
+.shot:hover .shot-cap,.shot:focus-visible .shot-cap{opacity:1;transform:none}
+
+/* LIGHTBOX (perbesar screenshot) */
+.lightbox{position:fixed;inset:0;z-index:260;display:grid;place-items:center;padding:28px;background:color-mix(in srgb,#160a12 78%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);opacity:0;pointer-events:none;transition:opacity .3s}
+.lightbox.open{opacity:1;pointer-events:auto}
+.lb-inner{position:relative;display:flex;align-items:center;justify-content:center;gap:14px;width:100%;height:100%}
+.lb-fig{margin:0;display:flex;flex-direction:column;align-items:center;gap:14px;max-width:min(1100px,92vw);max-height:88vh}
+.lb-fig img{max-width:100%;max-height:78vh;object-fit:contain;border-radius:14px;box-shadow:0 30px 80px -24px rgba(0,0,0,.7);background:#fff;transform:scale(.96);transition:transform .35s var(--ease)}
+.lightbox.open .lb-fig img{transform:none}
+.lb-fig figcaption{font-family:var(--mono);font-size:.82rem;letter-spacing:.04em;color:#fff;text-align:center}
+.lb-nav{flex:0 0 auto;width:52px;height:52px;border-radius:50%;border:none;background:rgba(255,255,255,.14);color:#fff;font-size:1.9rem;line-height:1;cursor:pointer;transition:background .25s,transform .25s;display:grid;place-items:center}
+.lb-nav:hover{background:rgba(255,255,255,.28);transform:scale(1.08)}
+.lb-close{position:absolute;top:0;right:0;width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,.16);color:#fff;font-size:1rem;cursor:pointer;transition:transform .3s var(--ease),background .25s}
+.lb-close:hover{transform:rotate(90deg);background:rgba(255,255,255,.3)}
+.lb-count{position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;color:rgba(255,255,255,.75)}
+@media(max-width:640px){
+  .lb-nav{width:42px;height:42px;font-size:1.5rem}
+  .lb-inner{gap:6px}
+  .lb-fig img{max-height:70vh}
+}
+
 /* EDU + FLIP */
 .edu-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:28px}
 .edu-grid .card h3{font-family:var(--serif);font-weight:400;font-size:1.55rem;letter-spacing:-.025em}
