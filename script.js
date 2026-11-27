@@ -168,7 +168,44 @@ const PROJECTS = [
       'Menyusun dokumentasi arsitektur, desain database, dan alur aplikasi untuk keperluan maintenance dan serah terima.'
     ],
     stack: ['React.js','ASP.NET Web API','SQL Server','REST API','UML'],
-    links: [['Source Code','#'],['Live Demo','#']]   // ganti '#' dengan link asli
+    links: [['Source Code','#'],['Live Demo','#']],   // ganti '#' dengan link asli
+    // Galeri tangkapan layar aplikasi. Semua file ada di assets/image/ecourse/.
+    // Untuk menambah/mengubah: salin satu baris, sesuaikan nama file & judulnya.
+    shotsBase: 'assets/image/ecourse/',
+    shots: [
+      { f: 'login.png',                      t: 'Halaman Login' },
+      { f: 'dashboard.png',                  t: 'Dashboard' },
+      { f: 'master course.png',              t: 'Master Course' },
+      { f: 'add course.png',                 t: 'Tambah Course' },
+      { f: 'detail course.png',              t: 'Detail Course' },
+      { f: 'detail course 2.png',            t: 'Detail Course (lanjutan)' },
+      { f: 'master module.png',              t: 'Master Module' },
+      { f: 'add module.png',                 t: 'Tambah Module' },
+      { f: 'maintain material module.png',   t: 'Kelola Materi Module' },
+      { f: 'maintain material module 2.png', t: 'Kelola Materi Module (lanjutan)' },
+      { f: 'my course.png',                  t: 'My Course' },
+      { f: 'learning page.png',              t: 'Halaman Belajar' },
+      { f: 'learning page 2.png',            t: 'Halaman Belajar (lanjutan)' },
+      { f: 'maintain quiz.png',              t: 'Kelola Kuis' },
+      { f: 'maintain quiz 2.png',            t: 'Kelola Kuis (lanjutan)' },
+      { f: 'quiz.png',                       t: 'Mengerjakan Kuis' },
+      { f: 'quiz result.png',                t: 'Hasil Kuis' },
+      { f: 'assignment.png',                 t: 'Tugas' },
+      { f: 'add assignment.png',             t: 'Tambah Tugas' },
+      { f: 'assignment result.png',          t: 'Hasil Tugas' },
+      { f: 'forum.png',                      t: 'Forum Diskusi' },
+      { f: 'master jadwal training.png',     t: 'Master Jadwal Training' },
+      { f: 'add training schedule.png',      t: 'Tambah Jadwal Training' },
+      { f: 'jadwal training.png',            t: 'Jadwal Training' },
+      { f: 'summary paarticipant score.png', t: 'Ringkasan Nilai Peserta' },
+      { f: 'summary participant score 2.png',t: 'Ringkasan Nilai Peserta (2)' },
+      { f: 'summary participant score 3.png',t: 'Ringkasan Nilai Peserta (3)' },
+      { f: 'certificates.png',               t: 'Sertifikat' },
+      { f: 'my transaction.png',             t: 'Transaksi Saya' },
+      { f: 'profile.png',                    t: 'Profil' },
+      { f: 'personal data.png',              t: 'Data Pribadi' },
+      { f: 'account.png',                    t: 'Akun' }
+    ]
   },
   {
     id: 'ahm', cat: 'Enterprise', grad: 'g2', art: 'ahm',
@@ -762,6 +799,7 @@ $('#avatarBtn').addEventListener('click', e => {
     p.points.forEach(t => list.append(mk('li', '', t.replace(' (DRAFT)', ''))));
     const st = $('#mStack'); st.replaceChildren();
     p.stack.forEach(s => st.append(mk('span', '', s)));
+    renderShots(p);
     const ln = $('#mLinks'); ln.replaceChildren();
     if (p.links.length) {
       p.links.forEach(([label, href]) => { const a = mk('a', '', label + ' ↗'); a.href = href; a.target = '_blank'; a.rel = 'noopener'; ln.append(a); });
@@ -801,6 +839,73 @@ $('#avatarBtn').addEventListener('click', e => {
       grid.append(card);
     });
   }
+
+  /* ---------- Galeri screenshot di dalam modal + lightbox ---------- */
+  const lb = $('#lightbox'), lbImg = $('#lbImg'), lbCap = $('#lbCap'), lbCount = $('#lbCount');
+  let lbShots = [], lbIndex = 0, lbLastFocus = null;
+
+  function renderShots(p) {
+    // buat/ambil container galeri, selalu diposisikan tepat sebelum #mLinks
+    let wrap = $('#mShots');
+    if (!wrap) {
+      wrap = mk('div'); wrap.id = 'mShots';
+      const links = $('#mLinks');
+      links.parentNode.insertBefore(wrap, links);
+    }
+    wrap.replaceChildren();
+    if (!p.shots || !p.shots.length) { wrap.hidden = true; return; }
+    wrap.hidden = false;
+    wrap.append(mk('h4', '', 'Tampilan Aplikasi'));
+    wrap.append(mk('p', 'shots-cap muted', 'Klik gambar untuk memperbesar.'));
+    const grid = mk('div', 'shots-grid');
+    const base = p.shotsBase || '';
+    p.shots.forEach((s, i) => {
+      const btn = mk('button', 'shot'); btn.type = 'button';
+      btn.setAttribute('aria-label', 'Perbesar: ' + s.t);
+      const img = mk('img'); img.src = base + s.f; img.alt = s.t;
+      img.loading = 'lazy'; img.decoding = 'async';
+      btn.append(img, mk('span', 'shot-cap', s.t));
+      btn.addEventListener('click', () => openLightbox(p, i));
+      grid.append(btn);
+    });
+    wrap.append(grid);
+  }
+
+  function showShot(i) {
+    const n = lbShots.length; if (!n) return;
+    lbIndex = (i + n) % n;
+    const s = lbShots[lbIndex];
+    lbImg.src = s.src; lbImg.alt = s.t;
+    lbCap.textContent = s.t;
+    lbCount.textContent = (lbIndex + 1) + ' / ' + n;
+  }
+  function openLightbox(p, i) {
+    const base = p.shotsBase || '';
+    lbShots = p.shots.map(s => ({ src: base + s.f, t: s.t }));
+    lbLastFocus = document.activeElement;
+    showShot(i);
+    lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    $('#lbClose').focus();
+  }
+  function closeLightbox() {
+    lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true');
+    lbImg.src = '';
+    // kembalikan scroll hanya jika modal proyek juga tertutup
+    if (!modal.classList.contains('open')) document.body.style.overflow = '';
+    if (lbLastFocus) lbLastFocus.focus();
+  }
+  $('#lbClose').addEventListener('click', closeLightbox);
+  $('#lbPrev').addEventListener('click', () => showShot(lbIndex - 1));
+  $('#lbNext').addEventListener('click', () => showShot(lbIndex + 1));
+  lb.addEventListener('click', e => { if (e.target === lb || e.target.classList.contains('lb-inner')) closeLightbox(); });
+  addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') { e.stopPropagation(); closeLightbox(); }
+    else if (e.key === 'ArrowLeft') showShot(lbIndex - 1);
+    else if (e.key === 'ArrowRight') showShot(lbIndex + 1);
+  });
+
   cats.forEach(c => {
     const b = mk('button', 'filter' + (c === active ? ' active' : ''), c);
     b.type = 'button';
