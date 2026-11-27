@@ -312,6 +312,8 @@ Object.assign(EN, {
   'Sertifikasi: Lean Six Sigma White Belt (2026), Dynamics 365 Fundamentals (2025),':'Certifications: Lean Six Sigma White Belt (2026), Dynamics 365 Fundamentals (2025),',
   'Nice try 😄 tapi kamu tidak punya akses di sini.':'Nice try 😄 but you don’t have access here.',
   /* mode editor kode */
+  'Foto Anisatul Fatikha, klik untuk kejutan':'Photo of Anisatul Fatikha, click for a surprise',
+  'Momen wisuda':'Graduation day','Dari beasiswa sampai toga':'From scholarship to graduation gown','Tiga tahun belajar di Politeknik Astra ditutup dengan hari wisuda yang tidak akan terlupakan.':'Three years at Politeknik Astra, closed by a graduation day I will never forget.','Beasiswa Penuh Astra Bina Ilmu':'Full Astra Bina Ilmu scholarship','D3 Manajemen Informatika':'D3 Information Management','Lempar topi 🎓':'Toss the caps 🎓','Perbesar foto wisuda':'Enlarge graduation photo','Wisuda D3 · Politeknik Astra':'D3 Graduation · Politeknik Astra','Foto belum bisa ditampilkan.':'The photo could not be displayed.',
   'Hanya untuk dilihat':'View only','Memuat dokumen…':'Loading document…','Dokumen belum bisa ditampilkan. Coba muat ulang halaman.':'The document could not be displayed. Please reload the page.','Transkrip Nilai':'Academic Transcript',
   'Lihat transkrip nilai ↗':'View academic transcript ↗','Klik untuk melihat sertifikatnya.':'Click to view the certificate.','Lihat sertifikat':'View certificate',
   '  ide         mode editor kode </>':'  ide         code editor mode </>',
@@ -664,6 +666,13 @@ function rainPetals() {
   }
   if (window.catChase) window.catChase();   // Mochi ikut mengejar kelopak
 }
+// Foto avatar: coba nama file cadangan; kalau semuanya gagal, foto dihapus (tanpa inisial)
+(function avatarPhoto() {
+  const img = $('#avatarImg'); if (!img) return;
+  const fallbacks = ['assets/image/anisa.jpg', 'assets/image/anisa.jpeg', 'assets/image/anisa.png'];
+  img.addEventListener('error', () => { const next = fallbacks.shift(); if (next) img.src = next; else img.remove(); });
+})();
+
 let avatarClicks = 0;
 $('#avatarBtn').addEventListener('click', e => {
   const b = e.currentTarget.getBoundingClientRect();
@@ -2469,7 +2478,7 @@ $('#year').textContent = new Date().getFullYear();
   const msg = t => body.replaceChildren(mk('p', 'docv-msg', tr(t)));
 
   async function open(src, name) {
-    const my = ++token; lastFocus = document.activeElement;
+    const my = ++token; lastFocus = document.activeElement; box.classList.remove('photo');
     title.textContent = tr(name); msg('Memuat dokumen…'); body.scrollTop = 0;
     box.classList.add('open'); box.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden';
     closeBtn.focus();
@@ -2488,13 +2497,25 @@ $('#year').textContent = new Date().getFullYear();
       }
     } catch (e) { if (my === token) msg('Dokumen belum bisa ditampilkan. Coba muat ulang halaman.'); }
   }
+  function openPhoto(src, name) {
+    const my = ++token; lastFocus = document.activeElement;
+    title.textContent = tr(name); body.scrollTop = 0;
+    const img = mk('img', 'docv-img'); img.alt = tr(name); img.decoding = 'async';
+    img.onerror = () => { if (my === token) msg('Foto belum bisa ditampilkan.'); };
+    img.src = src; body.replaceChildren(img);
+    box.classList.add('open', 'photo'); box.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
   function close() {
     token++; box.classList.remove('open'); box.setAttribute('aria-hidden', 'true'); document.body.style.overflow = '';
-    setTimeout(() => { if (!box.classList.contains('open')) body.replaceChildren(); }, 400);
+    setTimeout(() => { if (!box.classList.contains('open')) { body.replaceChildren(); box.classList.remove('photo'); } }, 400);
     if (lastFocus) lastFocus.focus();
   }
 
-  document.addEventListener('click', e => { const b = e.target.closest('[data-doc]'); if (b) open(b.dataset.doc, b.dataset.title || b.textContent.trim()); });
+  document.addEventListener('click', e => {
+    const p = e.target.closest('[data-photo]'); if (p) { openPhoto(p.dataset.photo, p.dataset.caption || ''); return; }
+    const b = e.target.closest('[data-doc]'); if (b) open(b.dataset.doc, b.dataset.title || b.textContent.trim());
+  });
   closeBtn.addEventListener('click', close);
   box.addEventListener('click', e => { if (e.target === box) close(); });
   addEventListener('keydown', e => {
@@ -2504,6 +2525,31 @@ $('#year').textContent = new Date().getFullYear();
   });
   box.addEventListener('contextmenu', e => e.preventDefault());
   box.addEventListener('dragstart', e => e.preventDefault());
+})();
+
+/* =====================================================
+   MOMEN WISUDA: topi toga beterbangan (sekali saat terlihat, dan lewat tombol)
+===================================================== */
+(function gradMoment() {
+  const pol = $('#polaroid'), btn = $('#capToss');
+  if (!pol || reduceMotion) { if (btn && reduceMotion) btn.hidden = true; return; }
+  const EMO = ['🎓', '🎓', '🎓', '🌸', '✨'];
+  function toss() {
+    const r = pol.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    for (let i = 0; i < 16; i++) {
+      const el = mk('span', 'cap-fly', EMO[i % EMO.length]);
+      el.style.left = cx + 'px'; el.style.top = cy + 'px'; document.body.append(el);
+      const dx = rand(-240, 240), up = rand(190, 400), rot = rand(-540, 540), down = rand(50, 170);
+      el.animate([
+        { transform: 'translate(-50%,-50%) rotate(0deg)', opacity: 1 },
+        { transform: `translate(calc(-50% + ${dx * .6}px),calc(-50% - ${up}px)) rotate(${rot * .5}deg)`, opacity: 1, offset: .45 },
+        { transform: `translate(calc(-50% + ${dx}px),calc(-50% + ${down}px)) rotate(${rot}deg)`, opacity: 0 }
+      ], { duration: rand(1300, 2100), easing: 'cubic-bezier(.2,.7,.4,1)', delay: i * 25 }).onfinish = () => el.remove();
+    }
+  }
+  btn.addEventListener('click', toss);
+  const io = new IntersectionObserver(es => { if (es[0].isIntersecting) { io.disconnect(); setTimeout(toss, 700); } }, { threshold: .7 });
+  io.observe(pol);
 })();
 
 /* Apply translations to static HTML text and accessible attributes. Dynamic text

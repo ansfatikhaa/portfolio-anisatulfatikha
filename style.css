@@ -715,3 +715,64 @@ body.ide .garden-flies{bottom:24px}
 .docv-msg{text-align:center;color:var(--muted);padding:60px 10px;font-family:var(--mono);font-size:.88rem}
 @media(max-width:620px){.docv{padding:0}.docv-box{height:100%;border-radius:0;border:0}.docv-note{display:none}.docv-body{padding:10px}}
 @media print{.docv{display:none!important}}
+
+/* Momen wisuda */
+.grad-moment{display:grid;grid-template-columns:minmax(260px,400px) 1fr;gap:64px;align-items:center;margin-top:96px}
+.pol-stack{position:relative;max-width:400px;width:100%;margin-inline:auto;padding:10px 6px 6px}
+.pol-stack::before{content:"";position:absolute;inset:6px 0 0;border-radius:8px;background:var(--surface);border:1px solid var(--border);transform:rotate(5deg);transition:transform .5s var(--ease);box-shadow:var(--shadow)}
+.pol-stack:hover::before{transform:rotate(8deg) translate(10px,4px)}
+.polaroid{position:relative;display:block;width:100%;padding:14px 14px 0;background:#fffdf8;color:#3a2230;border:0;border-radius:6px;text-align:center;font:inherit;cursor:zoom-in;transform:rotate(-3.5deg);transition:transform .5s var(--ease),box-shadow .5s;box-shadow:0 24px 50px -22px rgba(60,20,45,.55),0 2px 6px rgba(0,0,0,.08)}
+.pol-stack:hover .polaroid,.polaroid:focus-visible{transform:rotate(0) translateY(-6px) scale(1.02);box-shadow:0 34px 60px -24px rgba(60,20,45,.6),0 2px 6px rgba(0,0,0,.08)}
+.polaroid img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:80% 30%;border-radius:2px;background:linear-gradient(135deg,var(--accent),var(--accent2))}
+.pol-cap{display:block;padding:14px 6px 18px;font-family:var(--serif);font-style:italic;font-size:1.08rem;letter-spacing:-.01em}
+.tape{position:absolute;top:-15px;left:50%;width:100px;height:30px;transform:translateX(-50%) rotate(2.5deg);background:color-mix(in srgb,var(--accent) 38%,#fff 42%);opacity:.82;box-shadow:0 1px 3px rgba(0,0,0,.12);clip-path:polygon(0 8%,4% 0,8% 10%,12% 0,16% 8%,84% 8%,88% 0,92% 10%,96% 0,100% 8%,100% 92%,96% 100%,92% 90%,88% 100%,84% 92%,16% 92%,12% 100%,8% 90%,4% 100%,0 92%)}
+.gm-title{font-family:var(--serif);font-weight:400;font-size:clamp(1.7rem,3.2vw,2.4rem);letter-spacing:-.03em;line-height:1.15;margin-bottom:14px}
+.gm-text .muted{max-width:46ch}
+.gm-chips{margin:20px 0 26px}
+.gm-text .btn{margin-top:2px}
+.cap-fly{position:fixed;z-index:120;font-size:1.7rem;pointer-events:none;will-change:transform,opacity;user-select:none}
+@media(max-width:860px){.grad-moment{grid-template-columns:1fr;gap:44px;margin-top:72px}.pol-stack{max-width:340px}}
+/* foto di penampil popup */
+.docv-img{display:block;max-width:100%;max-height:calc(90vh - 130px);margin:0 auto;border-radius:8px;box-shadow:0 14px 40px -16px rgba(0,0,0,.55);object-fit:contain}
+.docv.photo .docv-note{display:none}
+@media(max-width:620px){.docv-img{max-height:calc(100vh - 100px)}}
+
+/* Foto avatar menutupi inisial; objek wajah dijaga di bagian atas bingkai */
+.avatar .av-ini{position:relative;z-index:0}
+.avatar img{position:absolute;inset:0;z-index:1;object-position:50% 20%;background:#fff;pointer-events:none;-webkit-user-drag:none}
+
+/* ===== Percantik foto avatar (anisa) ===== */
+/* Latar pastel menggantikan putih polos; foto "melebur" lewat multiply */
+.avatar{
+  background:
+    radial-gradient(110% 80% at 25% 0%,rgba(255,255,255,.9),transparent 60%),
+    linear-gradient(165deg,color-mix(in srgb,var(--accent) 26%,#fff),color-mix(in srgb,var(--accent2) 30%,#fff));
+  overflow:visible;
+  box-shadow:
+    0 0 0 5px var(--surface),
+    0 0 0 7px color-mix(in srgb,var(--accent) 70%,transparent),
+    0 0 0 12px color-mix(in srgb,var(--accent2) 22%,transparent),
+    0 30px 50px -16px color-mix(in srgb,var(--accent) 60%,transparent);
+  animation:avGlow 4.5s ease-in-out infinite;
+}
+.avatar img{
+  background:transparent;
+  mix-blend-mode:multiply;
+  object-position:50% 18%;
+  filter:saturate(1.08) contrast(1.04) brightness(1.03);
+  transition:filter .5s var(--ease);
+}
+.avatar:hover img{filter:saturate(1.18) contrast(1.06) brightness(1.06)}
+/* kilau kecil di pojok bingkai */
+.avatar::after{
+  content:"✦";position:absolute;right:-10px;top:26px;z-index:3;
+  font-size:1.15rem;color:var(--accent);pointer-events:none;
+  text-shadow:0 0 12px color-mix(in srgb,var(--accent) 70%,transparent);
+  animation:avTwinkle 3s ease-in-out infinite;
+}
+@keyframes avGlow{
+  0%,100%{box-shadow:0 0 0 5px var(--surface),0 0 0 7px color-mix(in srgb,var(--accent) 70%,transparent),0 0 0 12px color-mix(in srgb,var(--accent2) 22%,transparent),0 30px 50px -16px color-mix(in srgb,var(--accent) 60%,transparent)}
+  50%{box-shadow:0 0 0 5px var(--surface),0 0 0 7px color-mix(in srgb,var(--accent) 70%,transparent),0 0 0 16px color-mix(in srgb,var(--accent2) 14%,transparent),0 34px 60px -14px color-mix(in srgb,var(--accent) 75%,transparent)}
+}
+@keyframes avTwinkle{0%,100%{opacity:.35;transform:scale(.8) rotate(0)}50%{opacity:1;transform:scale(1.15) rotate(20deg)}}
+@media (prefers-reduced-motion:reduce){.avatar,.avatar::after{animation:none}}
