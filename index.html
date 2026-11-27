@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="id" data-palette="rose">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anisatul Fatikha | Fullstack Developer & System Analyst</title>
+  <meta name="description" content="Portofolio interaktif Anisatul Fatikha, Fullstack Developer dan System Analyst: React.js, Java Spring Boot, ASP.NET, SQL." />
+  <meta name="theme-color" content="#d4477c" />
+
+  <!-- Preview saat link dibagikan (WhatsApp, LinkedIn, dll).
+       PENTING: og:image & og:url harus URL ABSOLUT. Ganti GANTI-DOMAIN-KAMU.com
+       dengan alamat web kamu setelah di-deploy (mis. https://anisatul.github.io/portfolio). -->
+  <meta property="og:title" content="Anisatul Fatikha | Fullstack Developer" />
+  <meta property="og:description" content="Fullstack Developer & System Analyst. React.js, Spring Boot, ASP.NET, SQL." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="id_ID" />
+  <meta property="og:site_name" content="Anisatul Fatikha" />
+  <meta property="og:url" content="https://GANTI-DOMAIN-KAMU.com/" />
+  <meta property="og:image" content="https://GANTI-DOMAIN-KAMU.com/assets/og-image.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Anisatul Fatikha, Fullstack Developer & System Analyst" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Anisatul Fatikha | Fullstack Developer" />
+  <meta name="twitter:description" content="Fullstack Developer & System Analyst. React.js, Spring Boot, ASP.NET, SQL." />
+  <meta name="twitter:image" content="https://GANTI-DOMAIN-KAMU.com/assets/og-image.jpg" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+  <div class="cursor-glow" id="glow"></div>
+  <canvas id="night" aria-hidden="true"></canvas>
+
+  <!-- NAVBAR -->
+  <header class="nav">
+    <a href="#home" class="logo" aria-label="Beranda">af<span>.</span></a>
+    <nav class="links" id="links">
+      <a href="#about">Tentang</a>
+      <a href="#experience">Pengalaman</a>
+      <a href="#skills">Skill</a>
+      <a href="#projects">Proyek</a>
+      <a href="#education">Pendidikan</a>
+      <a href="#learning">Belajar</a>
+      <a href="#contact">Kontak</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="cmdBtn" aria-label="Pintasan (Ctrl+K)" title="Pintasan (Ctrl+K)"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+      <button class="icon-btn" id="themeBtn" aria-label="Ganti tema"><svg class="i" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+      <button class="icon-btn ide-btn" id="ideBtn" type="button" aria-pressed="false" aria-label="Mode editor kode" title="Mode editor kode"><svg class="i" viewBox="0 0 24 24"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></svg></button>
+      <button class="icon-btn burger" id="burger" aria-label="Menu"><svg class="i" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></svg></button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <canvas id="bg"></canvas>
+      <div class="container hero-grid">
+        <div class="hero-text reveal">
+          <p class="eyebrow" id="greet">Halo, saya</p>
+          <h1>Anisatul <span class="grad">Fatikha</span></h1>
+          <h2 class="role">Saya seorang <span id="typed"></span><span class="caret">|</span></h2>
+          <p class="lead">
+            Fullstack Developer dengan 2 tahun pengalaman membangun aplikasi enterprise,
+            integrasi sistem, dan pengelolaan database. Gerakkan mouse di area ini, ada
+            sesuatu yang bereaksi.
+          </p>
+          <div class="cta">
+            <a href="#projects" class="btn primary magnetic">Lihat Proyek <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+            <a href="#contact" class="btn ghost magnetic">Hubungi Saya</a>
+            <!-- File CV ada di assets/doc/. Kalau namanya diganti, samakan di sini -->
+            <a href="assets/doc/cv-anisatulfatikha.pdf" class="btn cv magnetic" id="cvBtn" download="CV-Anisatul-Fatikha.pdf"><svg class="i" viewBox="0 0 24 24"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg> Download CV</a>
+          </div>
+          <div class="socials">
+            <a href="https://www.linkedin.com/in/anisatul-fatikha/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/ansfatikhaa" target="_blank" rel="noopener">GitHub</a>
+            <a href="mailto:fatikhaanisatul@gmail.com">Email</a>
+            <a href="https://portfolio-anisatul-fatikha.my.canva.site/" target="_blank" rel="noopener">Portofolio Canva</a>
+          </div>
+          <p class="kbd-hint">Tekan <kbd>Ctrl</kbd> + <kbd>K</kbd> untuk jalan pintas</p>
+        </div>
+
+        <div class="hero-card tilt reveal">
+          <!-- Ganti inisial dengan foto: <button class="avatar" id="avatarBtn"><img src="assets/foto.jpg" alt="Anisatul Fatikha"></button> -->
+          <span class="status"><i></i>Terbuka untuk kolaborasi</span>
+          <button class="avatar" id="avatarBtn" type="button" aria-label="Klik untuk kejutan">AF</button>
+          <p class="avatar-hint">psst, klik avatar-nya ✦</p>
+          <p class="hero-card-title">System Analyst &amp; Developer</p>
+          <p class="hero-card-sub">PT Astra Honda Motor · Jakarta</p>
+          <div class="stats">
+            <div><strong data-count="2" data-suffix="+">0</strong><span>Tahun pengalaman</span></div>
+            <div><strong data-count="3.73" data-decimals="2">0</strong><span>IPK D3</span></div>
+            <div><strong data-count="4">0</strong><span>Sertifikasi</span></div>
+          </div>
+        </div>
+      </div>
+      <a href="#about" class="scroll-hint" aria-label="Scroll ke bawah">↓</a>
+    </section>
+
+    <!-- TECH MARQUEE -->
+    <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marqueeTrack"></div></div>
+
+    <!-- ABOUT + TERMINAL -->
+    <section class="section" id="about">
+      <div class="container">
+        <p class="kicker reveal">01 · Tentang</p>
+        <h2 class="title reveal">Tentang <span class="grad">Saya</span></h2>
+        <div class="about-grid">
+          <div class="reveal">
+            <p class="about-p">
+              Saya lulusan D3 Manajemen Informatika Politeknik Astra (IPK 3.73) dan penerima
+              beasiswa penuh Yayasan Astra Bina Ilmu. Saat ini saya bekerja sebagai
+              System Analyst &amp; Developer yang ditugaskan di PT Astra Honda Motor,
+              Enterprise Digitalization Management Department.
+            </p>
+            <p class="about-p">
+              Saya nyaman bekerja di frontend dan backend: dari analisis kebutuhan, FSD/TSD,
+              optimasi query SQL/PL-SQL, sampai pengujian (UT, SIT, QAT, UAT) dan dokumentasi teknis.
+            </p>
+            <p class="about-p hint">→ Coba terminal di sebelah. Ketik <code>help</code> atau klik perintahnya.</p>
+          </div>
+
+          <div class="terminal reveal" id="terminal">
+            <div class="term-bar">
+              <i></i><i></i><i></i><span>anisatul@portfolio: ~</span>
+            </div>
+            <div class="term-body" id="termBody">
+              <div id="termOut"></div>
+              <div class="term-line">
+                <span class="prompt">$</span>
+                <input id="termInput" type="text" autocomplete="off" spellcheck="false" aria-label="Terminal" placeholder="ketik perintah..." />
+              </div>
+            </div>
+            <div class="term-chips" id="termChips"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE (tabs) -->
+    <section class="section alt" id="experience">
+      <div class="container">
+        <p class="kicker reveal">02 · Perjalanan</p>
+        <h2 class="title reveal">Pengalaman <span class="grad">Kerja</span></h2>
+        <div class="exp reveal">
+          <div class="exp-tabs" id="expTabs" role="tablist"></div>
+          <div class="exp-panel card" id="expPanel" role="tabpanel"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS (filter) -->
+    <section class="section" id="skills">
+      <div class="container">
+        <p class="kicker reveal">03 · Keahlian</p>
+        <h2 class="title reveal">Technical <span class="grad">Skills</span></h2>
+        <div class="filters reveal" id="skillFilters"></div>
+        <div class="chip-cloud" id="skillCloud"></div>
+        <p class="muted center-text reveal" id="skillCount"></p>
+      </div>
+    </section>
+
+    <!-- PROJECTS (filter + modal) -->
+    <section class="section alt" id="projects">
+      <div class="container">
+        <p class="kicker reveal">04 · Karya</p>
+        <h2 class="title reveal">Proyek <span class="grad">Pilihan</span></h2>
+        <div class="filters reveal" id="projFilters"></div>
+        <div class="project-grid" id="projGrid"></div>
+      </div>
+    </section>
+
+    <!-- EDUCATION + CERT + ORG -->
+    <section class="section" id="education">
+      <div class="container">
+        <p class="kicker reveal">05 · Latar belakang</p>
+        <h2 class="title reveal">Pendidikan &amp; <span class="grad">Sertifikasi</span></h2>
+        <div class="edu-grid">
+          <div class="card tilt reveal">
+            <span class="date">Sep 2022 - Agu 2025</span>
+            <h3>D3 Manajemen Informatika</h3>
+            <p class="company">Politeknik Astra, Bekasi</p>
+            <ul class="bullets">
+              <li>IPK 3.73 / 4.00</li>
+              <li>Penerima Beasiswa Penuh Yayasan Astra Bina Ilmu</li>
+              <li>Proyek akhir: Web-Based E-Course System untuk pelatihan publik</li>
+              <li>Mata kuliah: manajemen database, pemrograman web, analisis &amp; desain sistem, rekayasa perangkat lunak</li>
+            </ul>
+            <button class="doc-link" type="button" data-doc="assets/doc/transkrip-anisatulfatikha.pdf" data-title="Transkrip Nilai">Lihat transkrip nilai ↗</button>
+            <p class="edu-prev">Sebelumnya: SMKN 2 Kebumen, Audio Video Engineering (2018 - 2021)</p>
+          </div>
+          <div class="card tilt reveal">
+            <h3>Sertifikasi</h3>
+            <p class="cert-hint">Klik untuk melihat sertifikatnya.</p>
+            <ul class="certs">
+              <li><button class="cert-link" type="button" data-doc="assets/doc/LEAN%20SIX%20SIGMA.pdf" data-title="Lean Six Sigma White Belt" title="Lihat sertifikat"><strong>Lean Six Sigma White Belt</strong></button><span>2026</span></li>
+              <li><button class="cert-link" type="button" data-doc="assets/doc/Microsoft%20Dynamics%20365%20Fundamentals%20%28ERP%29.pdf" data-title="Microsoft Dynamics 365 Fundamentals" title="Lihat sertifikat"><strong>Microsoft Dynamics 365 Fundamentals</strong></button><span>2025</span></li>
+              <li><button class="cert-link" type="button" data-doc="assets/doc/SERTIFIKAT%20MTCNA.pdf" data-title="MikroTik Certified Network Associate (MTCNA)" title="Lihat sertifikat"><strong>MikroTik Certified Network Associate (MTCNA)</strong></button><span>2024</span></li>
+              <li><button class="cert-link" type="button" data-doc="assets/doc/OOP%20JAVA.pdf" data-title="Java OOP Course-Net" title="Lihat sertifikat"><strong>Java OOP Course-Net</strong></button><span>2023</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 class="subtitle reveal">Organisasi &amp; <span class="grad">Kegiatan</span> <small>klik kartu untuk membalik</small></h3>
+        <div class="flip-grid" id="flipGrid"></div>
+      </div>
+    </section>
+
+    <!-- LEARNING: sedang dipelajari. Untuk menambah kartu, salin satu blok <article class="card learn-card ..."> di bawah. -->
+    <section class="section alt" id="learning">
+      <div class="container">
+        <p class="kicker reveal">06 · Bertumbuh</p>
+        <h2 class="title reveal">Sedang Saya <span class="grad">Pelajari</span></h2>
+        <p class="muted learn-lead reveal">Selain bekerja, saya melanjutkan kuliah S1 dan terus menambah ilmu baru.</p>
+        <div class="learn-grid" id="learnGrid">
+          <article class="card learn-card tilt reveal">
+            <div class="learn-top"><span class="learn-emoji" aria-hidden="true">🎓</span><span class="status"><i></i>Sedang berjalan</span></div>
+            <span class="date">Kuliah</span>
+            <h3>S1 Sistem Informasi</h3>
+            <p class="company">BINUS Online</p>
+            <p class="learn-desc">Kuliah S1 Sistem Informasi secara daring, berjalan bersamaan dengan pekerjaan saya sebagai System Analyst &amp; Developer.</p>
+            <div class="chips small"><span>Kuliah daring</span><span>Sambil bekerja</span><span>Sistem Informasi</span></div>
+            <div class="learn-bar" aria-hidden="true"><i></i></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="container contact-wrap">
+        <div class="reveal">
+          <p class="kicker">07 · Kontak</p>
+          <h2 class="title">Mari <span class="grad">Terhubung</span></h2>
+          <p class="muted">Terbuka untuk peluang kerja, kolaborasi proyek, atau diskusi seputar software development. Isi form di samping, atau salin email langsung.</p>
+          <button class="btn ghost" id="copyEmail" type="button"><svg class="i" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg> fatikhaanisatul@gmail.com</button>
+          <div class="socials">
+            <a href="https://www.linkedin.com/in/anisatul-fatikha/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/ansfatikhaa" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://portfolio-anisatul-fatikha.my.canva.site/" target="_blank" rel="noopener">Portofolio Canva</a>
+          </div>
+        </div>
+
+        <form class="card contact-form reveal" id="contactForm" novalidate>
+          <label>Nama
+            <input type="text" id="cName" required placeholder="Nama kamu" />
+          </label>
+          <label>Email
+            <input type="email" id="cEmail" required placeholder="email@contoh.com" />
+          </label>
+          <label>Pesan
+            <textarea id="cMsg" rows="5" required maxlength="600" placeholder="Tulis pesanmu..."></textarea>
+            <small id="cCount">0 / 600</small>
+          </label>
+          <!-- honeypot anti-spam: disembunyikan dari pengunjung, bot biasanya mengisinya -->
+          <input type="text" name="_gotcha" id="cGotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <p class="form-error" id="formError" role="alert"></p>
+          <button class="btn primary" type="submit" id="sendBtn">Kirim Pesan <svg class="i" viewBox="0 0 24 24"><path d="M21 3 10 14M21 3l-7 18-4-8-8-4 19-6z"/></svg></button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> <em>Anisatul Fatikha</em> · dibuat dengan HTML, CSS &amp; JavaScript ✿</p>
+  </footer>
+
+  <!-- PALETTE PICKER -->
+  <div class="palette">
+    <button class="palette-fab" id="palFab" type="button" aria-label="Ganti warna" aria-expanded="false"><svg class="i" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.2 0 1.9-.9 1.6-1.9-.3-1.1.3-2.1 1.5-2.1H17a4 4 0 0 0 4-4c0-5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1" fill="currentColor"/><circle cx="10" cy="7.2" r="1" fill="currentColor"/><circle cx="14.5" cy="7.2" r="1" fill="currentColor"/></svg></button>
+    <div class="palette-pop" id="palPop">
+      <p>Warna favoritmu</p>
+      <div class="swatches" id="swatches"></div>
+      <p class="fur-title">Bulu Mochi</p>
+      <div class="fur-opts" id="furOpts"></div>
+      <button class="feed-btn" id="feedBtn" type="button">🐟 Kasih makan Mochi</button>
+      <button class="feed-btn yarn-btn" id="yarnBtn" type="button">🧶 Main bola benang</button>
+    </div>
+  </div>
+
+  <!-- DOCUMENT VIEWER: sertifikat & transkrip tampil di popup (tanpa tombol unduh) -->
+  <div class="docv" id="docv" aria-hidden="true">
+    <div class="docv-box" role="dialog" aria-modal="true" aria-labelledby="docvTitle">
+      <header class="docv-head">
+        <h3 id="docvTitle"></h3>
+        <span class="docv-note">Hanya untuk dilihat</span>
+        <button class="docv-close" id="docvClose" type="button" aria-label="Tutup">✕</button>
+      </header>
+      <div class="docv-body" id="docvBody"></div>
+    </div>
+  </div>
+
+  <!-- PROJECT MODAL -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+      <button class="modal-close" id="modalClose" type="button" aria-label="Tutup">✕</button>
+      <div class="modal-thumb" id="mThumb"></div>
+      <div class="modal-meta"><span class="badge" id="mRole"></span><span class="badge soft" id="mPeriod"></span></div>
+      <h3 id="mTitle"></h3>
+      <p id="mDesc" class="muted"></p>
+      <h4>Yang dikerjakan</h4>
+      <ul class="bullets" id="mList"></ul>
+      <h4>Teknologi</h4>
+      <div class="chips small" id="mStack"></div>
+      <div class="p-links" id="mLinks"></div>
+    </div>
+  </div>
+
+  <!-- COMMAND PALETTE -->
+  <div class="cmdk" id="cmdk" aria-hidden="true">
+    <div class="cmdk-box" role="dialog" aria-modal="true" aria-label="Pintasan">
+      <input id="cmdInput" type="text" autocomplete="off" spellcheck="false" placeholder="Cari bagian atau aksi... (mis. proyek, warna, tema)" />
+      <ul id="cmdList"></ul>
+      <p class="cmdk-foot">↑↓ pilih · Enter jalankan · Esc tutup</p>
+    </div>
+  </div>
+
+  <!-- KUCING pengikut (Mochi). Warna bulu diatur lewat data-fur + variabel CSS -->
+  <div class="cat idle" id="cat" data-fur="orange" aria-hidden="true">
+    <span class="cat-bubble" id="catBubble"></span>
+    <span class="cat-z">z z Z</span>
+    <span class="cat-note">♪ ♫</span>
+    <div class="cat-flip">
+      <div class="cat-inner"><canvas class="cat-canvas" id="catCanvas"></canvas></div>
+    </div>
+  </div>
+
+  <!-- RUMAH Mochi: kalau lama didiamkan, Mochi pulang & tidur di sini. Klik rumahnya untuk memanggil/menyuruh pulang -->
+  <div class="cat-house" id="catHouse" role="button" tabindex="0" aria-label="Rumah Mochi" title="Rumah Mochi">
+    <span class="house-z">z z Z</span>
+    <svg viewBox="0 0 120 104" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <ellipse cx="60" cy="102" rx="54" ry="3.5" fill="#000" opacity=".12"/>
+      <rect class="h-wall" x="16" y="48" width="88" height="54" rx="4"/>
+      <path class="h-roof" d="M5 53 L60 7 L115 53 Z" stroke-linejoin="round"/>
+      <path class="h-shine" d="M17 50 L60 14 L103 50" fill="none" stroke-width="2" stroke-linecap="round"/>
+      <circle class="h-win" cx="60" cy="38" r="7.5"/><path class="h-win-x" d="M60 30.5v15M52.5 38h15" stroke-width="1.4"/>
+      <path class="h-door" d="M43 102 V82 a17 17 0 0 1 34 0 V102 Z"/>
+      <g class="h-eyes"><ellipse cx="54" cy="88" rx="1.6" ry="2.2"/><ellipse cx="66" cy="88" rx="1.6" ry="2.2"/></g>
+      <text x="24" y="98" font-size="11" fill="var(--accent)" opacity=".8">✿</text>
+      <ellipse class="h-bowl" cx="94" cy="99" rx="8" ry="3"/><path class="h-bowl2" d="M86 99 q8 7 16 0 Z"/>
+    </svg>
+  </div>
+
+  <!-- LAMPU TAMAN di samping rumah Mochi: menyala di mode gelap, cahayanya menerangi sekitar (lihat .lamp-pool di CSS/JS) -->
+  <div class="garden-lamp" id="gardenLamp" aria-hidden="true">
+    <svg viewBox="0 0 44 124" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="gGlow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff0b8" stop-opacity=".95"/><stop offset=".3" stop-color="#ffd37a" stop-opacity=".5"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/></radialGradient>
+      </defs>
+      <ellipse cx="22" cy="121" rx="15" ry="2.8" fill="#000" opacity=".14"/>
+      <rect class="g-step" x="10" y="115" width="24" height="6" rx="2.4"/>
+      <rect class="g-step" x="14" y="106" width="16" height="10" rx="2.2"/>
+      <rect class="g-post" x="20" y="44" width="4" height="63" rx="2"/>
+      <rect class="g-post" x="17.5" y="99" width="9" height="3.4" rx="1.7"/>
+      <rect class="g-post" x="17.5" y="52" width="9" height="3" rx="1.5"/>
+      <circle class="g-glow" cx="22" cy="32" r="30" fill="url(#gGlow)"/>
+      <rect class="g-glass" x="14" y="22" width="16" height="21" rx="4.5"/>
+      <ellipse class="g-core" cx="22" cy="32" rx="3.2" ry="5.2"/>
+      <path class="g-frame" d="M18.7 22.6v19.6M25.3 22.6v19.6" stroke-width="1.1" stroke-linecap="round"/>
+      <rect class="g-post" x="12.5" y="42.2" width="19" height="3.4" rx="1.7"/>
+      <path class="g-cap" d="M11 23 L22 10.5 L33 23 Z" stroke-linejoin="round"/>
+      <circle class="g-post" cx="22" cy="8.2" r="2.3"/>
+    </svg>
+  </div>
+
+  <!-- DEKORASI TAMAN (rumput, bunga & awan di sekitar rumah Mochi): murni hiasan, tidak bisa diklik. Gaya: .garden-back/.garden-front/.garden-clouds di CSS -->
+  <div class="garden-back" aria-hidden="true">
+    <svg viewBox="0 0 270 34" xmlns="http://www.w3.org/2000/svg">
+      <path class="gr-hill2" d="M0 34C10 29 24 18 52 19C78 21 100 14 132 15C164 16 186 21 214 18C240 15 256 20 270 34Z"/>
+      <path class="gr-hill1" d="M0 34C12 31 32 25 58 26C86 28 108 22 140 23C170 24 196 28 222 25C246 23 262 28 270 34Z"/>
+      <g transform="translate(12 29) scale(1.0)"><g class="tuft gb" style="animation-delay:-0.4s"><path d="M-6 0Q-5-7-9-12Q-2-8-2 0Z"/><path d="M-3 0Q-2-11-3-16Q3-10 2 0Z"/><path d="M1 0Q3-8 8-12Q6-6 5 0Z"/></g></g><g transform="translate(36 22) scale(1.15)"><g class="tuft gb" style="animation-delay:-1.9s"><path d="M-6 0Q-5-7-9-12Q-2-8-2 0Z"/><path d="M-3 0Q-2-11-3-16Q3-10 2 0Z"/><path d="M1 0Q3-8 8-12Q6-6 5 0Z"/></g></g><g transform="translate(60 22) scale(0.9)"><g class="tuft gb" style="animation-delay:-3.0s"><path d="M-6 0Q-5-7-9-12Q-2-8-2 0Z"/><path d="M-3 0Q-2-11-3-16Q3-10 2 0Z"/><path d="M1 0Q3-8 8-12Q6-6 5 0Z"/></g></g><g transform="translate(150 18) scale(1.1)"><g class="tuft gb" style="animation-delay:-0.9s"><path d="M-6 0Q-5-7-9-12Q-2-8-2 0Z"/><path d="M-3 0Q-2-11-3-16Q3-10 2 0Z"/><path d="M1 0Q3-8 8-12Q6-6 5 0Z"/></g></g><g transform="translate(214 21) scale(0.95)"><g class="tuft gb" style="animation-delay:-2.4s"><path d="M-6 0Q-5-7-9-12Q-2-8-2 0Z"/><path d="M-3 0Q-2-11-3-16Q3-10 2 0Z"/><path d="M1 0Q3-8 8-12Q6-6 5 0Z"/></g></g><g transform="translate(236 20) scale(1.1)"><g class="tuft gb" style="animation-delay:-3.6s"><path d="M-6 0Q-5-7-9-12Q-2-8-2 0Z"/><path d="M-3 0Q-2-11-3-16Q3-10 2 0Z"/><path d="M1 0Q3-8 8-12Q6-6 5 0Z"/></g></g><g transform="translate(258 27) scale(0.9)"><g class="tuft gb" style="animation-delay:-1.2s"><path d="M-6 0Q-5-7-9-12Q-2-8-2 0Z"/><path d="M-3 0Q-2-11-3-16Q3-10 2 0Z"/><path d="M1 0Q3-8 8-12Q6-6 5 0Z"/></g></g>
+    </svg>
+  </div>
+  <div class="garden-front" aria-hidden="true">
+    <svg viewBox="0 0 320 36" xmlns="http://www.w3.org/2000/svg">
+      <path class="gr-strip" d="M0 36C8 33 24 28 38 29C54 30 66 27 84 28C104 29 116 31 134 30C150 29 162 28 182 29C200 30 214 27 236 28C256 29 270 27 290 28C304 29 314 32 320 36Z"/>
+      <g transform="translate(8 34) scale(1.0)"><g class="tuft gf" style="animation-delay:-0.2s"><path d="M-6 0Q-5-7-9-12Q-2-8-2 0Z"/><path d="M-3 0Q-2-11-3-16Q3-10 2 0Z"/><path d="M1 0Q3-8 8-12Q6-6 5 0Z"/></g></g><g transform="translate(24 34) scale(0.8)"><g class="tuft gf" style="animation-delay:-1.3s"><path d="M-6 0Q-5-7-9-12Q-2-8-2 0Z"/><path d="M-3 0Q-2-11-3-16Q3-10 2 0Z"/><path d="M1 0Q3-8 8-12Q6-6 5 0Z"/></g></g><g transform="translate(44 34) scale(1.05)"><g class="tuft gf" style="animation-delay:-2.6s"><path d="M-6 0Q-5-7-9-12Q-2-8-2 0Z"/><path d="M-3 0Q-2-11-3-16Q3-10 2 0Z"/><path d="M1 0Q3-8 8-12Q6-6 5 0Z"/></g></g><g transform="translate(58 34) scale(0.8)"><g class="tuft gf" style="animation-delay:-0.7s"><path d="M-6 0Q-5-7-9-12Q-2-8-2 0Z"/><path d="M-3 0Q-2-11-3-16Q3-10 2 0Z"/><path d="M1 0Q3-8 8-12Q6-6 5 0Z"/></g></g><g transform="translate(148 34) scale(0.85)"><g class="tuft gf" style="animation-delay:-1.7s"><path d="M-6 0Q-5-7-9-12Q-2-8-2 0Z"/><path d="M-3 0Q-2-11-3-16Q3-10 2 0Z"/><path d="M1 0Q3-8 8-12Q6-6 5 0Z"/></g></g><g transform="translate(157 34) scale(1.0)"><g class="tuft gf" style="animation-delay:-3.1s"><path d="M-6 0Q-5-7-9-12Q-2-8-2 0Z"/><path d="M-3 0Q-2-11-3-16Q3-10 2 0Z"/><path d="M1 0Q3-8 8-12Q6-6 5 0Z"/></g></g><g transform="translate(208 34) scale(1.0)"><g class="tuft gf" style="animation-delay:-1.1s"><path d="M-6 0Q-5-7-9-12Q-2-8-2 0Z"/><path d="M-3 0Q-2-11-3-16Q3-10 2 0Z"/><path d="M1 0Q3-8 8-12Q6-6 5 0Z"/></g></g><g transform="translate(224 34) scale(0.8)"><g class="tuft gf" style="animation-delay:-2.0s"><path d="M-6 0Q-5-7-9-12Q-2-8-2 0Z"/><path d="M-3 0Q-2-11-3-16Q3-10 2 0Z"/><path d="M1 0Q3-8 8-12Q6-6 5 0Z"/></g></g><g transform="translate(240 34) scale(1.1)"><g class="tuft gf" style="animation-delay:-0.3s"><path d="M-6 0Q-5-7-9-12Q-2-8-2 0Z"/><path d="M-3 0Q-2-11-3-16Q3-10 2 0Z"/><path d="M1 0Q3-8 8-12Q6-6 5 0Z"/></g></g><g transform="translate(256 34) scale(0.9)"><g class="tuft gf" style="animation-delay:-2.9s"><path d="M-6 0Q-5-7-9-12Q-2-8-2 0Z"/><path d="M-3 0Q-2-11-3-16Q3-10 2 0Z"/><path d="M1 0Q3-8 8-12Q6-6 5 0Z"/></g></g>
+      <g transform="translate(16 34) scale(1.0)"><g class="tuft" style="animation-delay:-0.6s"><path class="gf-stem" d="M0 0Q-1-9 0-17" fill="none" stroke-width="1.4" stroke-linecap="round"/><circle class="gf-pink" cx="0.0" cy="-22.1" r="2.5"/><circle class="gf-pink" cx="2.95" cy="-19.96" r="2.5"/><circle class="gf-pink" cx="1.82" cy="-16.49" r="2.5"/><circle class="gf-pink" cx="-1.82" cy="-16.49" r="2.5"/><circle class="gf-pink" cx="-2.95" cy="-19.96" r="2.5"/><circle class="gf-core" cx="0" cy="-19" r="1.9"/></g></g><g transform="translate(34 34) scale(0.9)"><g class="tuft" style="animation-delay:-2.1s"><path class="gf-stem" d="M0 0Q-1-9 0-17" fill="none" stroke-width="1.4" stroke-linecap="round"/><circle class="gf-white" cx="0.0" cy="-22.1" r="2.5"/><circle class="gf-white" cx="2.95" cy="-19.96" r="2.5"/><circle class="gf-white" cx="1.82" cy="-16.49" r="2.5"/><circle class="gf-white" cx="-1.82" cy="-16.49" r="2.5"/><circle class="gf-white" cx="-2.95" cy="-19.96" r="2.5"/><circle class="gf-core" cx="0" cy="-19" r="1.9"/></g></g><g transform="translate(64 34) scale(0.85)"><g class="tuft" style="animation-delay:-1.0s"><path class="gf-stem" d="M0 0Q-1-9 0-17" fill="none" stroke-width="1.4" stroke-linecap="round"/><circle class="gf-white" cx="0.0" cy="-22.1" r="2.5"/><circle class="gf-white" cx="2.95" cy="-19.96" r="2.5"/><circle class="gf-white" cx="1.82" cy="-16.49" r="2.5"/><circle class="gf-white" cx="-1.82" cy="-16.49" r="2.5"/><circle class="gf-white" cx="-2.95" cy="-19.96" r="2.5"/><circle class="gf-core" cx="0" cy="-19" r="1.9"/></g></g><g transform="translate(152 34) scale(0.95)"><g class="tuft" style="animation-delay:-2.8s"><path class="gf-stem" d="M0 0Q-1-9 0-17" fill="none" stroke-width="1.4" stroke-linecap="round"/><circle class="gf-pink" cx="0.0" cy="-22.1" r="2.5"/><circle class="gf-pink" cx="2.95" cy="-19.96" r="2.5"/><circle class="gf-pink" cx="1.82" cy="-16.49" r="2.5"/><circle class="gf-pink" cx="-1.82" cy="-16.49" r="2.5"/><circle class="gf-pink" cx="-2.95" cy="-19.96" r="2.5"/><circle class="gf-core" cx="0" cy="-19" r="1.9"/></g></g><g transform="translate(202 34) scale(0.9)"><g class="tuft" style="animation-delay:-0.4s"><path class="gf-stem" d="M0 0Q-1-9 0-17" fill="none" stroke-width="1.4" stroke-linecap="round"/><circle class="gf-white" cx="0.0" cy="-22.1" r="2.5"/><circle class="gf-white" cx="2.95" cy="-19.96" r="2.5"/><circle class="gf-white" cx="1.82" cy="-16.49" r="2.5"/><circle class="gf-white" cx="-1.82" cy="-16.49" r="2.5"/><circle class="gf-white" cx="-2.95" cy="-19.96" r="2.5"/><circle class="gf-core" cx="0" cy="-19" r="1.9"/></g></g><g transform="translate(232 34) scale(1.0)"><g class="tuft" style="animation-delay:-1.6s"><path class="gf-stem" d="M0 0Q-1-9 0-17" fill="none" stroke-width="1.4" stroke-linecap="round"/><circle class="gf-pink" cx="0.0" cy="-22.1" r="2.5"/><circle class="gf-pink" cx="2.95" cy="-19.96" r="2.5"/><circle class="gf-pink" cx="1.82" cy="-16.49" r="2.5"/><circle class="gf-pink" cx="-1.82" cy="-16.49" r="2.5"/><circle class="gf-pink" cx="-2.95" cy="-19.96" r="2.5"/><circle class="gf-core" cx="0" cy="-19" r="1.9"/></g></g><g transform="translate(250 34) scale(0.8)"><g class="tuft" style="animation-delay:-3.3s"><path class="gf-stem" d="M0 0Q-1-9 0-17" fill="none" stroke-width="1.4" stroke-linecap="round"/><circle class="gf-white" cx="0.0" cy="-22.1" r="2.5"/><circle class="gf-white" cx="2.95" cy="-19.96" r="2.5"/><circle class="gf-white" cx="1.82" cy="-16.49" r="2.5"/><circle class="gf-white" cx="-1.82" cy="-16.49" r="2.5"/><circle class="gf-white" cx="-2.95" cy="-19.96" r="2.5"/><circle class="gf-core" cx="0" cy="-19" r="1.9"/></g></g>
+    </svg>
+  </div>
+  <div class="garden-clouds" aria-hidden="true">
+    <svg class="g-cloud gc-a" viewBox="0 0 84 38" xmlns="http://www.w3.org/2000/svg"><g><rect x="6" y="20" width="72" height="14" rx="7"/><circle cx="26" cy="21" r="11"/><circle cx="45" cy="14" r="14"/><circle cx="63" cy="22" r="9"/></g></svg>
+    <svg class="g-cloud gc-b" viewBox="0 0 84 38" xmlns="http://www.w3.org/2000/svg"><g><rect x="8" y="21" width="68" height="13" rx="6.5"/><circle cx="30" cy="20" r="12"/><circle cx="52" cy="17" r="11"/></g></svg>
+    <svg class="g-cloud gc-c" viewBox="0 0 84 38" xmlns="http://www.w3.org/2000/svg"><g><rect x="10" y="21" width="62" height="13" rx="6.5"/><circle cx="34" cy="19" r="12"/><circle cx="55" cy="23" r="8"/></g></svg>
+  </div>
+
+  <!-- MUSIC: piringan hitam -->
+  <div class="vinyl" id="vinyl">
+    <span class="vinyl-label" id="vinylLabel">♪ Putar musik</span>
+    <button class="vinyl-btn" id="vinylBtn" type="button" aria-pressed="false" aria-label="Putar musik">
+      <span class="disc" aria-hidden="true"><span class="disc-label"></span></span>
+      <span class="arm" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+  <button id="toTop" class="to-top" aria-label="Kembali ke atas">↑</button>
+  <script src="script.js"></script>
+</body>
+</html>
